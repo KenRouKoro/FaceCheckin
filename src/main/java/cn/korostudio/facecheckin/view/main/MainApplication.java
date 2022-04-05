@@ -1,11 +1,14 @@
 package cn.korostudio.facecheckin.view.main;
 
+import cn.hutool.core.thread.ThreadUtil;
 import cn.korostudio.facecheckin.data.FXData;
 import cn.korostudio.facecheckin.main.Main;
 import cn.korostudio.facecheckin.part.VideoPanel;
 import cn.korostudio.facecheckin.util.FXUtil;
 import cn.korostudio.facecheckin.view.dialog.ExitDialog;
+import com.lzw.face.FaceHelper;
 import javafx.application.Application;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.embed.swing.SwingNode;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -18,6 +21,7 @@ import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 
@@ -33,11 +37,8 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        /*
-        VideoPanel videoPanel = new VideoPanel();
-        StackPane stackPane = new StackPane();
-        stackPane.getChildren().add(videoPanel.getVideoPanel());
-        */
+
+        FXData.mainApplication=this;
 
         this.stage=stage;
 
@@ -52,6 +53,7 @@ public class MainApplication extends Application {
 
     public void start(){
         stage.show();
+        ThreadUtil.execute(this::run);
     }
 
     public void initScene() throws IOException {
@@ -71,7 +73,9 @@ public class MainApplication extends Application {
         stage.setResizable(false);
         stage.setFullScreen(true);
 
-
+        stage.setOnCloseRequest(event -> {
+            System.exit(0);
+        });
     }
 
     public void initVideo(){
@@ -84,4 +88,18 @@ public class MainApplication extends Application {
         AnchorPane.setLeftAnchor(videoSwingNode, 0.0);
         AnchorPane.setBottomAnchor(videoSwingNode, 0.0);
     }
+
+    public void run(){
+        for(;;){
+            ThreadUtil.sleep(500);
+            BufferedImage bufferedImage = FXData.videoPanel.getWebcamPanel().getImage();
+            BufferedImage backgroundImage = FaceHelper.crop(bufferedImage);
+            if(backgroundImage == null ){
+                continue;
+            }
+            FXData.mainController.getShowFaceImagePanel().setImage(SwingFXUtils.toFXImage(backgroundImage,null));
+        }
+    }
+
+
 }

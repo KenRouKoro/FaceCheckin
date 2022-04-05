@@ -1,13 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cn.korostudio.facecheckin.view.main.MainController">
    <center>
       <AnchorPane id="mainViewPanel" fx:id="mainViewPanel" prefHeight="1920.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </center>
    <right>
-      <AnchorPane id="rightToolPanel" fx:id="rightToolPanel" prefHeight="1920.0" prefWidth="400.0" BorderPane.alignment="CENTER" />
+      <AnchorPane id="rightToolPanel" fx:id="rightToolPanel" prefHeight="1920.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView id="showFaceImagePanel" fx:id="showFaceImagePanel" fitHeight="350.0" fitWidth="350.0" layoutX="25.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="2.0" prefWidth="372.0" text="人脸识别结果区" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button id="fullScreenButton" fx:id="fullScreenButton" layoutX="14.0" layoutY="1026.0" mnemonicParsing="false" onMouseClicked="#fullScreenButtonClick" prefHeight="40.0" prefWidth="80.0" text="全屏化">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Label alignment="CENTER" layoutX="14.0" layoutY="26.0" prefWidth="372.0" text="识别图像">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="14.0" layoutY="398.0" prefWidth="372.0" text="匹配图像">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="350.0" fitWidth="350.0" layoutX="25.0" layoutY="420.0" pickOnBounds="true" preserveRatio="true" />
+            <Button id="exitButton" fx:id="exitButton" layoutX="306.0" layoutY="1026.0" mnemonicParsing="false" onMouseClicked="#exitButtonClick" prefHeight="40.0" prefWidth="80.0" text="退出">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Label alignment="CENTER" layoutX="14.0" layoutY="770.0" prefWidth="372.0" text="信息">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="792.0" prefWidth="372.0" text="学号：">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="814.0" prefWidth="372.0" text="姓名：">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="836.0" prefWidth="372.0" text="专业：">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Button layoutX="160.0" layoutY="1026.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" text="设置">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <ChoiceBox layoutX="125.0" layoutY="881.0" prefWidth="150.0" />
+            <Button layoutX="306.0" layoutY="881.0" mnemonicParsing="false" prefWidth="80.0" text="开始签到" />
+            <Label layoutX="14.0" layoutY="858.0" prefWidth="372.0" text="班级：">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="882.0" text="选择班级">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Button layoutX="306.0" layoutY="930.0" mnemonicParsing="false" prefWidth="80.0" text="录入信息" />
+         </children></AnchorPane>
    </right>
 </BorderPane>
