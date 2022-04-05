@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="100.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cn.korostudio.shouhoupetfx.view.dialog.ExitDialog">
+   <children>
+      <Button id="right" fx:id="right" layoutX="207.0" layoutY="62.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="80.0" text="否" />
+      <Button id="left" fx:id="left" layoutX="110.0" layoutY="62.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="80.0" text="是" />
+      <Label id="info" fx:id="info" layoutX="14.0" layoutY="14.0" prefHeight="35.0" prefWidth="274.0" text="信息内容">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
