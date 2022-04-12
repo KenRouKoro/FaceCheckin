@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cn.korostudio.facecheckin.view.show.ShowApplication">
+   <children>
+      <ListView fx:id="liftList" layoutX="15.0" layoutY="30.0" prefHeight="356.0" prefWidth="279.0" />
+      <ListView fx:id="rightList" layoutX="307.0" layoutY="30.0" prefHeight="356.0" prefWidth="279.0" />
+      <Label layoutX="138.0" layoutY="3.0" text="已签">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="431.0" layoutY="3.0" text="未签">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

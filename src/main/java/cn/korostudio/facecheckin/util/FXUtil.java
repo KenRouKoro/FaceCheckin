@@ -1,11 +1,21 @@
 package cn.korostudio.facecheckin.util;
 
 import cn.hutool.core.util.URLUtil;
+import cn.korostudio.facecheckin.data.ClassData;
+import cn.korostudio.facecheckin.data.Data;
+import cn.korostudio.facecheckin.data.FXData;
+import cn.korostudio.facecheckin.data.UserData;
+import com.lzw.face.FaceHelper;
 import javafx.scene.Scene;
 import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
 
 public class FXUtil {
 
@@ -31,4 +41,24 @@ public class FXUtil {
         return (a > 0 && b > 0 && c > 0 && d > 0) || (a < 0 && b < 0 && c < 0 && d < 0);
     }
 
+    public static void registerClass(List<String> classes) throws IOException {
+
+        Data.nowDataStatus.clear();
+        FXData.mainController.clearFindStudent();
+        Data.nowDataImage.clear();
+
+        FaceHelper.clear();
+
+        for(String s : classes){
+            ClassData classData = Data.classData.get(s);
+            for(UserData userData:classData.getUserData().values()){
+                BufferedImage image = ImageIO.read(new File(System.getProperty("user.dir") + "/data/imageData/" + userData.getUUID() + ".png"));
+                int index = FaceHelper.register(image);
+                Data.StudentDataAndStatus status = new Data.StudentDataAndStatus();
+                status.setStudent(userData);
+                Data.nowDataStatus.put(index,status);
+                Data.nowDataImage.put(index,image);
+            }
+        }
+    }
 }

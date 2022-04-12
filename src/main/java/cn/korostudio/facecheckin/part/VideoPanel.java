@@ -23,6 +23,7 @@ public class VideoPanel {
             /*Swing中的调用摄像头方法*/
             Webcam webcam = Webcam.getDefault();
             webcam.setViewSize(WebcamResolution.VGA.getSize());
+            //webcam.setCustomViewSizes(WebcamResolution.VGA.getSize());
             webcamPanel = new WebcamPanel(webcam);
             webcamPanel.setFPSDisplayed(true);
             webcamPanel.setDisplayDebugInfo(true);

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cn.korostudio.facecheckin.view.setting.SettingApplication">
+   <children>
+      <Label layoutX="14.0" text="设置">
+         <font>
+            <Font size="50.0" />
+         </font>
+      </Label>
+      <TabPane layoutY="64.0" prefHeight="598.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="基本设置">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="587.0" prefWidth="1280.0">
+                     <children>
+                        <ListView layoutX="14.0" layoutY="50.0" prefHeight="468.0" prefWidth="300.0" />
+                        <Button layoutX="14.0" layoutY="532.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="60.0" text="添加" />
+                        <Button layoutX="254.0" layoutY="532.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="60.0" text="删除" />
+                        <TextField layoutX="88.0" layoutY="532.0" prefHeight="23.0" prefWidth="152.0" />
+                        <Label layoutX="14.0" layoutY="18.0" text="班级列表">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="328.0" layoutY="273.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="60.0" text="选择" />
+                        <ListView layoutX="402.0" layoutY="51.0" prefHeight="468.0" prefWidth="300.0" />
+                        <Label layoutX="402.0" layoutY="18.0" text="班级学生">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="716.0" layoutY="51.0" prefHeight="20.0" prefWidth="80.0" text="姓名">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="716.0" layoutY="84.0" prefHeight="20.0" prefWidth="80.0" text="学号">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="716.0" layoutY="118.0" prefHeight="20.0" prefWidth="80.0" text="专业">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="716.0" layoutY="154.0" prefHeight="20.0" prefWidth="80.0" text="班级">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField layoutX="756.0" layoutY="50.0" prefHeight="20.0" prefWidth="150.0" />
+                        <TextField layoutX="756.0" layoutY="84.0" prefHeight="20.0" prefWidth="150.0" />
+                        <TextField layoutX="756.0" layoutY="118.0" prefHeight="20.0" prefWidth="150.0" />
+                        <ChoiceBox layoutX="756.0" layoutY="153.0" prefHeight="20.0" prefWidth="150.0" />
+                        <Button layoutX="716.0" layoutY="190.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="80.0" text="确认修改" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="识别设置">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="14.0" layoutY="50.0" prefWidth="100.0" text="匹配参数">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField layoutX="114.0" layoutY="50.0" prefWidth="200.0" />
+                        <Label layoutX="14.0" layoutY="87.0" prefWidth="100.0" text="识别停顿">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField layoutX="114.0" layoutY="87.0" prefWidth="200.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+      <Button layoutX="1166.0" layoutY="676.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="取消" />
+      <Button layoutX="1052.0" layoutY="676.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="确定" />
+   </children>
+</AnchorPane>

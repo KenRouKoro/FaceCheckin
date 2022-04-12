@@ -1,13 +1,16 @@
 package cn.korostudio.facecheckin.view.main;
 
 import cn.hutool.core.thread.ThreadUtil;
+import cn.korostudio.facecheckin.data.Data;
 import cn.korostudio.facecheckin.data.FXData;
 import cn.korostudio.facecheckin.main.Main;
 import cn.korostudio.facecheckin.part.VideoPanel;
 import cn.korostudio.facecheckin.util.FXUtil;
 import cn.korostudio.facecheckin.view.dialog.ExitDialog;
 import com.lzw.face.FaceHelper;
+import com.seetaface2.model.RecognizeResult;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.embed.swing.SwingNode;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +21,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import jfxtras.styles.jmetro.Style;
 import lombok.Getter;
+import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,6 +38,9 @@ public class MainApplication extends Application {
     protected Scene scene;
     @Getter
     protected SwingNode videoSwingNode;
+    @Setter
+    @Getter
+    protected boolean startCheckin=false;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -54,11 +61,13 @@ public class MainApplication extends Application {
     public void start(){
         stage.show();
         ThreadUtil.execute(this::run);
+        stage.setMaximized(true);
+        stage.setResizable(false);
     }
 
     public void initScene() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("Main.fxml"));
-        scene = new Scene(fxmlLoader.load(),1920,1080);
+        scene = new Scene(fxmlLoader.load(),1920,1000);
         FXData.mainController = fxmlLoader.getController();
         FXUtil.SetMetro(scene,Style.LIGHT);
         URL mainCssUrl = this.getClass().getResource("Main.css");
@@ -70,8 +79,11 @@ public class MainApplication extends Application {
         stage.getIcons().add(FXData.ICON);
         stage.setScene(scene);
 
-        stage.setResizable(false);
-        stage.setFullScreen(true);
+
+        //stage.setFullScreen(true);
+
+        stage.initStyle(StageStyle.DECORATED);
+
 
         stage.setOnCloseRequest(event -> {
             System.exit(0);
@@ -92,12 +104,27 @@ public class MainApplication extends Application {
     public void run(){
         for(;;){
             ThreadUtil.sleep(500);
-            BufferedImage bufferedImage = FXData.videoPanel.getWebcamPanel().getImage();
+            BufferedImage bufferedImage = FXData.videoPanel.getWebcamPanel().getWebcam().getImage();
             BufferedImage backgroundImage = FaceHelper.crop(bufferedImage);
             if(backgroundImage == null ){
                 continue;
             }
             FXData.mainController.getShowFaceImagePanel().setImage(SwingFXUtils.toFXImage(backgroundImage,null));
+            if(startCheckin){
+                RecognizeResult result = FaceHelper.search(bufferedImage);
+                if (result.similar>=Data.accuracy){
+                    Data.nowDataStatus.get(result.index).setStatus(true);
+                    Platform.runLater(()->{
+                        FXData.mainController.getFindImageView().setImage(SwingFXUtils.toFXImage(Data.nowDataImage.get(result.index),null));
+                        FXData.mainController.setFindStudent(Data.nowDataStatus.get(result.index).getStudent());
+                    });
+                }else{
+                    Platform.runLater(()->{
+                        FXData.mainController.getFindImageView().setImage(null);
+                    });
+                }
+            }
+
         }
     }
 
